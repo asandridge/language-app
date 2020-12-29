@@ -31,7 +31,9 @@ function LanguageSelection(props) {
     );
 };
 
-LanguageSelection.propTypes = {};
+LanguageSelection.propTypes = {
+    onLanguageChanged: PropTypes.func.isRequired
+};
 
 LanguageSelection.defaultProps = {};
 
