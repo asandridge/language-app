@@ -1,31 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import LanguageSelection from './components/LanguageSelection/LanguageSelection';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { language: 'spanish', showLanguageSelection: false }; // language should default to undefined and change based on local storage
-    this.handleLanguageChange = this.handleLanguageChange.bind(this);
-    this.handleOpenLanguageMenu = this.handleOpenLanguageMenu.bind(this);
-  }
+function App() {
+    const [language, setLanguage] = useState('spanish');
+    const [showLanguageSelection, setShowLanguageSelection] = useState(false);
 
-  handleLanguageChange(state) {
-    this.setState({ language: state });
-    this.setState({ showLanguageSelection: false });
-  }
+    function handleLanguageChange(state) {
+      setLanguage(state)
+      setShowLanguageSelection(false)
+    }
 
-  handleOpenLanguageMenu() {
-    this.setState({ showLanguageSelection: true });
-  }
+    function handleOpenLanguageMenu() {
+      setShowLanguageSelection(true)
+    }
 
-  render() {
-    if (this.state.showLanguageSelection) {
-      return <LanguageSelection onLanguageChanged={this.handleLanguageChange} />;
+    if (showLanguageSelection) {
+      return <LanguageSelection onLanguageChanged={handleLanguageChange} />;
     }
     return (
-      <div onClick={this.handleOpenLanguageMenu}>{this.state.language}</div>
+      <div onClick={handleOpenLanguageMenu}>{language}</div>
     );
-  }
 }
 
 export default App;

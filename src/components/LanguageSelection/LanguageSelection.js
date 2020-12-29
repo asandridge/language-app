@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const languages = {
   spanish: 'flag',
@@ -13,18 +14,14 @@ const languages = {
   arabic: 'flag',
 };
 
-class LanguageSelection extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
+function LanguageSelection(props) {
 
-  handleClick(language) {
-    this.props.onLanguageChanged(language);
-  }
+    function handleClick(language) {
+      props.onLanguageChanged(language);
+    }
 
-  render() {
-    const languageList = Object.keys(languages).map((language) => <button onClick={() => { this.handleClick(language); }} key={language}>{language.charAt(0).toUpperCase() + language.slice(1)}</button>);
+    const languageList = Object.keys(languages).map((language) => <button onClick={() => { handleClick(language); }} key={language}>{language.charAt(0).toUpperCase() + language.slice(1)}</button>);
+
     return (
       <div display="flex" flex-direction="column" justify-content="center">
         <div display="flex" justify-content="space-around">
@@ -32,6 +29,10 @@ class LanguageSelection extends React.Component {
         </div>
       </div>
     );
-  }
-}
+};
+
+LanguageSelection.propTypes = {};
+
+LanguageSelection.defaultProps = {};
+
 export default LanguageSelection;
